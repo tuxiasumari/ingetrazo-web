@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#273445">
+
+  <title>IngeTrazo · Modelador 3D libre para ingeniería y arquitectura</title>
+
+  <meta name="description" content="Modelador 3D libre estilo SketchUp con BIM opcional: traza como a mano, etiqueta muros, losas y columnas, obtén el metrado y exporta IFC. Terreno satelital 3D y perfiles. Linux, Windows y macOS. Código abierto GPL-3.0.">
+  <meta name="keywords" content="modelador 3D libre, alternativa a SketchUp, SketchUp Linux, BIM libre, exportar IFC, metrados, software ingeniería civil, CAD Linux, terreno 3D, perfil longitudinal, código abierto, GPL">
+  <meta name="author" content="Ing. Marco Sumari">
+
+  <link rel="canonical" href="https://ingetrazo.com/">
+
+  <meta property="og:site_name" content="IngeTrazo">
+  <meta property="og:title" content="IngeTrazo · Modelador 3D libre para ingeniería y arquitectura">
+  <meta property="og:description" content="Traza como a mano, etiqueta BIM, obtén el metrado y exporta IFC. Terreno satelital 3D. Libre y de código abierto (GPL-3.0). Linux, Windows y macOS.">
+  <meta property="og:image" content="https://ingetrazo.com/images/og-banner.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://ingetrazo.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="IngeTrazo · Modelador 3D libre para ingeniería y arquitectura">
+  <meta name="twitter:description" content="Traza como a mano, etiqueta BIM, obtén el metrado y exporta IFC. Libre y de código abierto. Linux, Windows y macOS.">
+  <meta name="twitter:image" content="https://ingetrazo.com/images/og-banner.jpg">
+
+  <link rel="icon" href="images/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="images/favicon-16.png" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="images/logo.png" sizes="180x180">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "IngeTrazo",
+    "operatingSystem": "Linux, Windows, macOS",
+    "applicationCategory": "DesignApplication",
+    "description": "Modelador 3D libre estilo SketchUp orientado a ingeniería civil y arquitectura, con BIM como capa opcional: etiqueta la geometría como muros, losas o columnas, obtén cantidades (metrado) y exporta IFC 4. Incluye terreno satelital 3D, perfiles longitudinales e importación de modelos SketchUp (.dae/.obj). Código abierto bajo GPL-3.0.",
+    "url": "https://ingetrazo.com/",
+    "image": "https://ingetrazo.com/images/logo.png",
+    "author": {
+      "@type": "Person",
+      "name": "Ing. Marco Sumari",
+      "email": "ing.sumari@gmail.com"
+    },
+    "inLanguage": "es",
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Software libre y gratuito bajo licencia GPL-3.0. Sin cuentas, sin suscripciones, sin límites."
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Es gratis de verdad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. IngeTrazo es software libre bajo licencia GPL-3.0: gratis hoy y para siempre, con el código fuente publicado en GitHub. Sin cuentas, sin suscripciones, sin funciones bloqueadas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿En qué se diferencia de SketchUp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El dibujo se siente igual de directo (empujar/tirar, inferencias, medidas exactas por teclado), pero IngeTrazo es libre, corre nativo en Linux, garantiza sólidos herméticos aptos para metrado e impresión 3D, y suma la capa BIM: etiquetas la geometría y obtienes cantidades e IFC."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo abrir mis modelos de SketchUp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Exporta desde SketchUp como COLLADA (.dae) u OBJ e impórtalo en IngeTrazo: llegan los grupos, componentes, materiales y texturas. Para que lleguen las texturas, copia el archivo junto con la carpeta de imágenes que genera SketchUp al exportar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es eso de BIM e IFC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BIM significa darle semántica al modelo: este sólido ES un muro, esta cara ES una puerta. Con eso IngeTrazo calcula las cantidades de obra (m², m³, unidades) y las exporta en IFC, el formato estándar que entienden los programas de presupuestos — incluido IngePresupuestos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Funciona sin internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, todo el modelador funciona offline y tus archivos viven en tu PC. Solo el mapa satelital y el terreno 3D descargan imágenes de internet mientras los usas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo lo instalo hoy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "IngeTrazo está en versión 0.1: por ahora se instala desde el código fuente (clonar el repositorio de GitHub, instalar PySide6 y ejecutar main.py — 3 comandos). Los instaladores con doble clic para Linux y Windows llegan con las próximas versiones."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Sirve para impresión 3D?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. El motor garantiza sólidos cerrados (herméticos) y exporta STL binario listo para el slicer, además de OBJ con materiales."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo reporto un problema o contribuyo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El proyecto vive en GitHub (github.com/tuxiasumari/ingetrazo): abre un issue con tu archivo de ejemplo, propón mejoras o envía código. También puedes escribir por correo."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="images/logo.png" alt="IngeTrazo" width="32" height="32">
+        <span>IngeTrazo</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Características</a>
+        <a href="#descargar">Descargar</a>
+        <a href="https://github.com/tuxiasumari/ingetrazo" target="_blank" rel="noopener">GitHub</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Abrir menú" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-center">
+      <h1>El modelador 3D libre<br>para ingeniería y arquitectura</h1>
+      <p class="hero-sub">Traza como a mano. Etiqueta BIM. Exporta IFC.<br>Nativo en Linux — también Windows y macOS. Código abierto.</p>
+      <div class="hero-ctas">
+        <a href="#descargar" class="btn btn-primary btn-lg">Consigue IngeTrazo gratis</a>
+        <span class="hero-version">Última versión: <span id="latest-version">v0.1.0</span></span>
+      </div>
+    </div>
+    <div class="hero-screenshot-wrap">
+      <img class="hero-img" src="images/screenshots/principal.jpeg"
+           alt="IngeTrazo: sólido texturizado con cotas, figura a escala y perfil de terreno"
+           width="1600" height="1038" loading="eager" fetchpriority="high">
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <div id="features">
+
+    <!-- ── 1. Modelado freeform ── -->
+    <section class="feat reveal">
+      <div class="container feat-row">
+        <div class="feat-text">
+          <h2>Traza como a mano</h2>
+          <p>Dibuja líneas, rectángulos, círculos y arcos; empuja una cara y ya tienes un sólido. Sin capas de complejidad CAD entre tu idea y el modelo.</p>
+          <ul class="feat-list">
+            <li><strong>Empujar/Tirar, Sígueme, Equidistancia</strong> — el flujo SketchUp que ya conoces</li>
+            <li><strong>Medidas exactas por teclado</strong> — escribe <code>3.50</code> y la línea mide 3.50 m</li>
+            <li><strong>Inferencias inteligentes</strong> — ejes, extensiones, paralelas y perpendiculares</li>
+            <li><strong>Materiales, texturas y cotas</strong> sobre cualquier cara</li>
+          </ul>
+        </div>
+        <figure class="feat-img">
+          <img class="zoomable" src="images/screenshots/modelado.jpeg"
+               alt="Modelado freeform con cotas y textura" width="1600" height="927" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── 2. BIM (la tesis) — azul ── -->
+    <section class="feat feat-bim reveal">
+      <div class="container feat-row feat-reverse">
+        <div class="feat-text">
+          <h2>BIM cuando lo necesitas, libertad siempre</h2>
+          <p>El BIM en IngeTrazo no es una jaula de familias rígidas: modelas libre y <strong>etiquetas</strong> lo que quieras como muro, losa, columna o puerta.</p>
+          <ul class="feat-list">
+            <li><strong>Metrado en vivo</strong> — m² de muro, m³ de columna, unidades de puerta</li>
+            <li><strong>Etiqueta al dibujar</strong> — activa una clase y todo lo que traces la asume</li>
+            <li><strong>Exporta IFC 4 validado</strong> — lo abre cualquier visor y software BIM</li>
+            <li><strong>CSV de cantidades</strong> — tu tabla de metrados en un clic</li>
+          </ul>
+          <p class="feat-muted-light">Sólidos garantizados herméticos: si una operación rompería el volumen, el motor la rechaza en vez de corromper tu metrado.</p>
+        </div>
+        <figure class="feat-img">
+          <img class="zoomable" src="images/screenshots/bim.jpeg"
+               alt="Panel BIM con clases IFC y metrado en vivo" width="1600" height="970" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── 3. Terreno — verde ── -->
+    <section class="feat feat-terra reveal">
+      <div class="container feat-row">
+        <div class="feat-text">
+          <h2>El terreno es el punto de partida</h2>
+          <p>Ubica tu proyecto en el mundo real: imagen satelital, relieve 3D y datos de campo, directo en el modelador.</p>
+          <ul class="feat-list">
+            <li><strong>Terreno 3D con imagen satelital</strong> — elevaciones reales de tu zona</li>
+            <li><strong>Perfil longitudinal</strong> — traza una ruta y mira su perfil al instante</li>
+            <li><strong>Puntos GPS / estación total</strong> — importa tu CSV en UTM y dibuja sobre puntos exactos</li>
+            <li><strong>Rutas y linderos</strong> georreferenciados, con progresivas y áreas</li>
+          </ul>
+          <p class="feat-muted">El modelador completo funciona offline; solo el mapa usa internet.</p>
+        </div>
+        <figure class="feat-img">
+          <img class="zoomable" src="images/screenshots/terreno.jpeg"
+               alt="Terreno 3D del valle del Colca con imagen satelital" width="1600" height="970" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── 4. Import SketchUp ── -->
+    <section class="feat feat-alt reveal">
+      <div class="container feat-row feat-reverse">
+        <div class="feat-text">
+          <h2>Trae tus modelos de SketchUp</h2>
+          <p>Tu biblioteca de años no se queda atrás: exporta desde SketchUp y ábrelo en IngeTrazo con grupos, materiales y texturas.</p>
+          <ul class="feat-list">
+            <li><strong>Importa COLLADA (.dae) y OBJ</strong> — también modelos de 3D Warehouse</li>
+            <li><strong>Grupos y componentes</strong> se conservan — mueve una farola sin arrastrar el resto</li>
+            <li><strong>Texturas e imágenes</strong> — hasta los personajes que miran a la cámara</li>
+            <li><strong>Exporta STL</strong> para impresión 3D, <strong>OBJ</strong> e <strong>IFC</strong></li>
+          </ul>
+        </div>
+        <figure class="feat-img">
+          <img class="zoomable" src="images/screenshots/import-sketchup.jpeg"
+               alt="Proyecto de SketchUp importado con grupos y materiales" width="1600" height="970" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ PUENTE INGEPRESUPUESTOS ============ -->
+  <section class="bridge reveal">
+    <div class="container">
+      <img class="bridge-icon" src="images/ingepresupuestos-logo.png" alt="IngePresupuestos" width="56" height="56">
+      <h2>Del modelo al presupuesto,<br>sin salir del ecosistema</h2>
+      <p>IngeTrazo es el hermano de <strong>IngePresupuestos</strong>: etiqueta tu modelo, exporta el IFC e impórtalo allá — las partidas llegan con sus metrados exactos, listas para el análisis de costos.</p>
+      <div class="flow">Terreno → Trazo → BIM → IFC → Presupuesto</div>
+      <div>
+        <a href="https://ingepresupuestos.com" target="_blank" rel="noopener" class="btn btn-orange">Conocer IngePresupuestos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT ============ -->
+  <section class="impact">
+    <h2>Libre y de código abierto.<br>Para siempre.</h2>
+    <p>IngeTrazo es software libre bajo GPL-3.0. Sin cuentas, sin nube obligatoria, sin suscripciones: tus modelos viven en tu PC, en un formato abierto que siempre podrás leer. Hecho en el Perú para el ingeniero y arquitecto de toda Latinoamérica.</p>
+  </section>
+
+  <!-- ============ DESCARGAR ============ -->
+  <section id="descargar" class="download-section">
+    <div class="container">
+      <h2>Consigue IngeTrazo</h2>
+      <p class="download-sub">Gratis y completo. Versión <span id="dl-version">0.1.0</span> — <span id="dl-date">julio 2026</span>.</p>
+      <div class="dl-row">
+        <div class="dl-group">
+          <span class="dl-group-label">Linux · Windows · macOS — desde el código fuente</span>
+          <div class="dl-group-cards">
+            <a class="dl-card dl-card-compact" href="https://github.com/tuxiasumari/ingetrazo" target="_blank" rel="noopener">
+              <svg width="26" height="26" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+              <strong>Ver en GitHub</strong>
+              <span>código + releases</span>
+            </a>
+          </div>
+          <div class="dl-code">
+            <code>git clone https://github.com/tuxiasumari/ingetrazo && cd ingetrazo
+python3 -m venv venv && venv/bin/pip install PySide6 numpy
+venv/bin/python main.py</code>
+            <button class="dl-code-copy" type="button" data-copy="git clone https://github.com/tuxiasumari/ingetrazo && cd ingetrazo && python3 -m venv venv && venv/bin/pip install PySide6 numpy && venv/bin/python main.py">Copiar</button>
+          </div>
+          <p class="dl-note">¿Prefieres doble clic? Los instaladores para Linux y Windows llegan con las próximas versiones — <a href="https://github.com/tuxiasumari/ingetrazo/releases" target="_blank" rel="noopener">sigue los releases</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="section">
+    <div class="container container-narrow">
+      <div class="section-head">
+        <h2>Preguntas frecuentes</h2>
+        <p>Lo que todos preguntan antes de trazar la primera línea.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Es gratis de verdad?</summary>
+          <p>Sí. IngeTrazo es <strong>software libre bajo GPL-3.0</strong>: gratis hoy y para siempre, con el código fuente publicado en GitHub. Sin cuentas, sin suscripciones, sin funciones bloqueadas.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿En qué se diferencia de SketchUp?</summary>
+          <p>El dibujo se siente igual de directo (empujar/tirar, inferencias, medidas exactas por teclado), pero IngeTrazo es libre, corre <strong>nativo en Linux</strong>, garantiza <strong>sólidos herméticos</strong> aptos para metrado e impresión 3D, y suma la capa BIM: etiquetas la geometría y obtienes cantidades e IFC.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo abrir mis modelos de SketchUp?</summary>
+          <p>Sí. Exporta desde SketchUp como <strong>COLLADA (.dae)</strong> u <strong>OBJ</strong> e impórtalo en IngeTrazo: llegan los grupos, componentes, materiales y texturas. Para que lleguen las texturas, copia el archivo junto con la carpeta de imágenes que genera SketchUp al exportar.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué es eso de BIM e IFC?</summary>
+          <p>BIM significa darle <strong>semántica</strong> al modelo: este sólido ES un muro, esta cara ES una puerta. Con eso IngeTrazo calcula las cantidades de obra (m², m³, unidades) y las exporta en <strong>IFC</strong>, el formato estándar que entienden los programas de presupuestos — incluido IngePresupuestos.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Funciona sin internet?</summary>
+          <p>Sí, todo el modelador funciona <strong>offline</strong> y tus archivos viven en tu PC. Solo el mapa satelital y el terreno 3D descargan imágenes de internet mientras los usas.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo lo instalo hoy?</summary>
+          <p>IngeTrazo está en versión 0.1: por ahora se instala <strong>desde el código fuente</strong> — clonar el repositorio, instalar PySide6 y ejecutar <code>main.py</code> (los 3 comandos están en la sección Descargar). Los instaladores con doble clic llegan con las próximas versiones.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Sirve para impresión 3D?</summary>
+          <p>Sí. El motor garantiza sólidos cerrados (herméticos) y exporta <strong>STL binario</strong> listo para el slicer, además de OBJ con materiales.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cómo reporto un problema o contribuyo?</summary>
+          <p>El proyecto vive en <a href="https://github.com/tuxiasumari/ingetrazo" target="_blank" rel="noopener">GitHub</a>: abre un issue con tu archivo de ejemplo, propón mejoras o envía código. También puedes escribir por <a href="mailto:ing.sumari@gmail.com">correo</a>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contacto" class="footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Logo de IngeTrazo" width="36" height="36">
+          <strong>IngeTrazo</strong>
+        </div>
+        <p>Modelador 3D libre para ingeniería y arquitectura.</p>
+        <p class="footer-copy">© 2026 Marco Sumari Tellez · Software libre GPL-3.0</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#features">Características</a></li>
+          <li><a href="#descargar">Descargar</a></li>
+          <li><a href="https://github.com/tuxiasumari/ingetrazo/releases" target="_blank" rel="noopener">Releases</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="https://github.com/tuxiasumari/ingetrazo" target="_blank" rel="noopener">Código abierto (GitHub)</a></li>
+          <li><a href="https://github.com/tuxiasumari/ingetrazo/issues" target="_blank" rel="noopener">Reportar un problema</a></li>
+          <li><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">Licencia GPL-3.0</a></li>
+          <li><a href="https://ingepresupuestos.com" target="_blank" rel="noopener">IngePresupuestos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:ing.sumari@gmail.com">ing.sumari@gmail.com</a></li>
+          <li><a href="https://wa.me/51998839090" target="_blank" rel="noopener">WhatsApp +51 998 839 090</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox para ampliar capturas -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Cerrar">×</button>
+    <img src="" alt="">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

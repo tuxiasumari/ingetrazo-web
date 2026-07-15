@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(54,137,230,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 110%, rgba(104,183,35,0.14) 0%, transparent 55%),
+      #1A2434;
+    color: #fff; position: relative;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; padding: 46px 0 0 64px; }
+  .brand img { width: 56px; height: 56px; }
+  .brand span { font-size: 30px; font-weight: 800; letter-spacing: -0.01em; }
+  h1 {
+    padding: 26px 64px 0; font-size: 52px; line-height: 1.12;
+    font-weight: 800; letter-spacing: -0.02em; max-width: 700px;
+  }
+  .line { width: 84px; height: 5px; background: #3689E6; border-radius: 3px; margin: 22px 64px 0; }
+  .sub { padding: 18px 64px 0; font-size: 22px; color: rgba(255,255,255,0.72); max-width: 620px; }
+  .shot {
+    position: absolute; right: -170px; bottom: -60px; width: 640px;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.14);
+    transform: rotate(-2deg);
+  }
+  .shot img { display: block; width: 100%; }
+  .free {
+    position: absolute; left: 64px; bottom: 46px;
+    background: #3689E6; color: #fff; font-weight: 700; font-size: 19px;
+    padding: 10px 22px; border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+  <div class="brand"><img src="../images/logo.png" alt=""><span>IngeTrazo</span></div>
+  <h1>El modelador 3D libre para ingeniería y arquitectura</h1>
+  <div class="line"></div>
+  <p class="sub">Traza como a mano · BIM e IFC · Terreno 3D · Linux, Windows y macOS</p>
+  <span class="free">Gratis · Código abierto GPL-3.0</span>
+  <div class="shot"><img src="terreno-crop.jpg" alt=""></div>
+</body>
+</html>
