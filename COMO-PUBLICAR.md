@@ -23,12 +23,16 @@ git add . && git commit -m "..."
 Requiere wrangler autenticado (`npx wrangler whoami` — cuenta
 ing.sumari@gmail.com). Si la sesión expiró: `npx wrangler login`.
 
-## Opcional a futuro (deploy automático con git push)
+## Repo GitHub
 
-Crear el repo GitHub `tuxiasumari/ingetrazo-web`, pushear, y en el
-dashboard de Cloudflare → Workers → ingetrazo-web → Settings → **Builds**
-conectar el repo. Con eso cada `git push` publica solo. Mientras tanto el
-`wrangler deploy` manual cumple igual.
+**https://github.com/tuxiasumari/ingetrazo-web** (público, rama `main`,
+creado 2026-07-16). Recordar pushear después de cada cambio:
+`git push`.
+
+Opcional a futuro (deploy automático con git push): en el dashboard de
+Cloudflare → Workers → ingetrazo-web → Settings → **Builds** conectar el
+repo. Con eso cada `git push` publica solo. Mientras tanto el flujo es
+`wrangler deploy` + `git push` manuales.
 
 ## Checklist post-publicación
 
