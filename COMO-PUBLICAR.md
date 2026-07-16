@@ -1,39 +1,40 @@
 # Cómo publicar ingetrazo.com
 
-El sitio es estático (HTML/CSS/JS, sin build). El camino recomendado es el
-mismo de ingepresupuestos.com: **Cloudflare Pages**.
+El sitio es estático (HTML/CSS/JS, sin build) y está **publicado como
+Cloudflare Worker con assets estáticos** (mismo esquema que
+ingepresupuestos.com). La configuración vive en `wrangler.jsonc`
+(incluye los custom domains `ingetrazo.com` y `www.ingetrazo.com`) y
+`.assetsignore` excluye los archivos que no deben subirse (docs internas,
+`.cover-build/`, etc.).
 
-## Primera vez (una sola vez)
+**Publicado por primera vez el 2026-07-16.** URLs en vivo:
 
-1. Crear un repo en GitHub (p. ej. `tuxiasumari/ingetrazo-web`) y pushear
-   este directorio:
+- https://ingetrazo.com (+ www)
+- https://ingetrazo-web.ing-sumari.workers.dev (URL técnica del Worker)
 
-   ```bash
-   cd ~/ingetrazo-web
-   git remote add origin git@github.com:tuxiasumari/ingetrazo-web.git
-   git push -u origin main
-   ```
-
-2. En el dashboard de Cloudflare → **Workers & Pages → Create → Pages →
-   Connect to Git** → elegir el repo. Build command: *(vacío)*.
-   Output directory: `/`.
-
-3. En **Custom domains** de ese proyecto Pages, agregar `ingetrazo.com`
-   (y `www.ingetrazo.com`). Cloudflare configura el DNS solo si el dominio
-   ya está en la cuenta; si lo compraste en otro registrador, apuntar los
-   nameservers a Cloudflare primero.
-
-## Cada cambio después
+## Cada cambio
 
 ```bash
-git add . && git commit -m "..." && git push
-# ~30 segundos y queda live
+cd ~/ingetrazo-web
+npx wrangler deploy    # sube solo los assets que cambiaron, ~5 s y queda live
+git add . && git commit -m "..."
 ```
+
+Requiere wrangler autenticado (`npx wrangler whoami` — cuenta
+ing.sumari@gmail.com). Si la sesión expiró: `npx wrangler login`.
+
+## Opcional a futuro (deploy automático con git push)
+
+Crear el repo GitHub `tuxiasumari/ingetrazo-web`, pushear, y en el
+dashboard de Cloudflare → Workers → ingetrazo-web → Settings → **Builds**
+conectar el repo. Con eso cada `git push` publica solo. Mientras tanto el
+`wrangler deploy` manual cumple igual.
 
 ## Checklist post-publicación
 
+- [x] `https://ingetrazo.com/robots.txt` y `/sitemap.xml` responden (verificado 2026-07-16).
+- [x] Headers de seguridad activos (`_headers`: CSP, HSTS, X-Frame-Options).
 - [ ] Verificar OG banner: compartir la URL en WhatsApp/Facebook
       (si sale caché vieja: Facebook Sharing Debugger → Scrape Again).
-- [ ] `https://ingetrazo.com/robots.txt` y `/sitemap.xml` responden.
 - [ ] Registrar en Google Search Console.
 - [ ] Activar Cloudflare Web Analytics (sin cookies) si se desea.

@@ -1,2 +1,6 @@
 .cover-build/site-full.png
 .cover-build/og-raw.png
+.wrangler/
+.cover-build/site*.png
+.cover-build/og-raw.png
+node_modules/

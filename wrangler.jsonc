@@ -1,0 +1,16 @@
+{
+  // Despliegue en Cloudflare Workers (sitio estático), espejo de
+  // ingepresupuestos-web: `npx wrangler deploy` publica los assets de la
+  // raíz del repo. Los custom domains (ingetrazo.com) se declaran en
+  // routes — requieren que la zona exista en la cuenta de Cloudflare.
+  "name": "ingetrazo-web",
+  "compatibility_date": "2026-07-16",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./"
+  },
+  "routes": [
+    { "pattern": "ingetrazo.com", "custom_domain": true },
+    { "pattern": "www.ingetrazo.com", "custom_domain": true }
+  ]
+}

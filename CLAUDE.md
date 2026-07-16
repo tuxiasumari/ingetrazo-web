@@ -11,7 +11,9 @@ Repo del producto: `~/ingetrazo/` → github.com/tuxiasumari/ingetrazo (GPL-3.0)
 ## Stack (idéntico al hermano)
 
 - HTML + CSS + JS vanilla, **sin build step**. Inter vía Google Fonts.
-- Hosting objetivo: Cloudflare Pages (ver `COMO-PUBLICAR.md`).
+- Hosting: **Cloudflare Worker con assets estáticos** — PUBLICADO en
+  https://ingetrazo.com desde 2026-07-16 (`wrangler.jsonc` + `.assetsignore`;
+  deploy con `npx wrangler deploy`, ver `COMO-PUBLICAR.md`).
 - `script.js`: versión desde **GitHub Releases API** (no R2 como el hermano),
   menú móvil, scroll reveal, lightbox, botón copiar.
 - SEO: JSON-LD (SoftwareApplication + FAQPage — espejados con el HTML del
@@ -56,8 +58,9 @@ dentro de $HOME) → `images/og-banner.jpg`.
   el código. AppImage pendiente.
 - Sección SketchUp: `.skp` directo con instalador de un clic del conversor
   skp2dae (FAQ + JSON-LD espejados).
-- **No publicar sin aprobación de Marco** — iterar local con
-  `python3 -m http.server 8765`.
+- Iterar local con `python3 -m http.server 8765`; publicar con
+  `npx wrangler deploy` (Marco aprobó la publicación el 2026-07-16;
+  cambios de contenido nuevos igual se muestran antes de desplegar).
 
 ## Contacto
 
