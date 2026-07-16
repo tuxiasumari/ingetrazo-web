@@ -19,6 +19,17 @@
         if (dd) dd.textContent = d.toLocaleDateString('es-PE',
           { year: 'numeric', month: 'long' });
       }
+      /* URLs exactas de los binarios Windows del release */
+      (rel.assets || []).forEach(function (a) {
+        if (/-setup-.*\.exe$/.test(a.name)) {
+          var btn = document.getElementById('dl-win-btn');
+          if (btn) btn.href = a.browser_download_url;
+        }
+        if (/-windows\.zip$/.test(a.name)) {
+          var zip = document.getElementById('dl-win-zip');
+          if (zip) zip.href = a.browser_download_url;
+        }
+      });
     })
     .catch(function () { /* fallback: valores estáticos del HTML */ });
 

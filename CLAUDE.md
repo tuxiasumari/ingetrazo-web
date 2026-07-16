@@ -41,7 +41,9 @@ Todas REALES, generadas por script contra la app en GL
 - `bim.jpeg` — casita taggeada + panel BIM con metrados (script scratch
   `shot_bim.py`; los números del panel se verificaron correctos).
 - `terreno.jpeg` — terreno 3D del valle del Colca (Yanque) con Esri satelital.
-- `import-sketchup.jpeg` — "Proyecto vivero.dae" real importado (314 grupos).
+- `import-sketchup.jpeg` — **plaza Yanque real abierta desde su .skp** (vía el
+  conversor skp2dae bajo Wine): arco, bandera del Perú y empedrado con
+  texturas, panel de materiales poblado. (Antes: vivero.dae con colores.)
 
 OG banner: `.cover-build/og.html` + Chromium headless (snap: solo escribe
 dentro de $HOME) → `images/og-banner.jpg`.
@@ -49,8 +51,11 @@ dentro de $HOME) → `images/og-banner.jpg`.
 ## Decisiones (no revertir sin discutir)
 
 - Sin frameworks, sin trackers, sin cookies banner.
-- Descarga: hoy apunta a GitHub (código fuente + 3 comandos); cuando existan
-  binarios (v0.2+), convertir a cards por SO como el hermano.
+- Descarga: cards por SO — Windows (instalador + zip; script.js resuelve las
+  URLs exactas de los assets del release vía la API de GitHub) y Linux desde
+  el código. AppImage pendiente.
+- Sección SketchUp: `.skp` directo con instalador de un clic del conversor
+  skp2dae (FAQ + JSON-LD espejados).
 - **No publicar sin aprobación de Marco** — iterar local con
   `python3 -m http.server 8765`.
 
